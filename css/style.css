@@ -387,29 +387,32 @@ body._lock {
   position: relative;
 }
 
-.btn {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 333px;
-  padding: 17px 0;
-  font-size: 35px;
-  border-radius: 22px;
-  -webkit-transition: all 0.5s ease 0s;
-  -o-transition: all 0.5s ease 0s;
-  transition: all 0.5s ease 0s;
-}
-
 .title {
   font-weight: 700;
   font-size: 24px;
   line-height: 115.625%;
+}
+
+._disabled {
+  cursor: default;
+}
+
+._back {
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+._no-webp ._back::after{
+  background: url("../img/catalog/arrow.png") center no-repeat; }
+
+._back::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  right: -19px;
+  width: 17px;
+  height: 14px;
 }
 
 ._more {
@@ -662,8 +665,8 @@ body._lock {
       -ms-grid-row-align: center;
       align-self: center;
   -webkit-box-flex: 0;
-      -ms-flex: 0 1 209px;
-          flex: 0 1 209px;
+      -ms-flex: 0 1 211px;
+          flex: 0 1 211px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -671,6 +674,7 @@ body._lock {
       -ms-flex-pack: end;
           justify-content: flex-end;
   padding-left: 20px;
+  padding-right: 20px;
 }
 
 .bottom-header__btn a {
@@ -1614,13 +1618,123 @@ body._lock {
   transition: all 0.3s ease 0s;
 }
 
+.breadcrumbs__container {
+  padding-top: 36px;
+  padding-left: 46px;
+}
+
+.breadcrumbs__links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.breadcrumbs__links li {
+  margin-right: 24px;
+}
+
+.breadcrumbs__links li:last-child {
+  margin-right: 0;
+}
+
+.breadcrumbs__link {
+  position: relative;
+  color: #444;
+  font-size: 14px;
+}
+
+.item-assortment {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 27px 30px 0 28px;
+}
+
+.item-assortment__title {
+  max-width: 150px;
+  margin-bottom: 28px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.item-assortment__image {
+  width: 400px;
+  margin-bottom: 6px;
+}
+
+.item-assortment__row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 10px;
+  padding-left: 3px;
+}
+
+.item-assortment__row li {
+  border-right: 1px solid #444;
+}
+
+.item-assortment__row li:last-child {
+  border-right: none;
+}
+
+.item-assortment__link {
+  display: inline-block;
+  padding: 10px 0;
+  color: #339dff;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.item-assortment__link_1 {
+  padding-left: 7px;
+  padding-right: 9px;
+}
+
+.item-assortment__link_2 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.item-assortment__link_3 {
+  padding-left: 10px;
+  padding-right: 6px;
+}
+
+.item-assortment__link_4 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.item-assortment__btn {
+  margin-bottom: 20px;
+}
+
 .assortment__container {
-  padding: 35px 30px 0px 30px;
+  padding: 39px 30px 0 45px;
 }
 
 .assortment__title {
+  max-width: 420px;
   font-size: 32px;
-  margin-bottom: 43px;
+  margin-bottom: 44px;
 }
 
 .assortment__items {
@@ -1643,68 +1757,48 @@ body._lock {
 }
 
 .assortment__item:nth-child(odd) {
-  margin-right: 100px;
+  margin-right: 89px;
 }
 
-.item-assortment {
+.assortment__item_b {
+  padding-top: 19px;
+}
+
+.assortment__item_b .item-assortment__title {
+  margin-bottom: 16px;
+}
+
+.assortment__item_b .item-assortment__image {
+  margin-bottom: 10px;
+}
+
+.consult-block > .consult-block__catalog {
+  padding-top: 115px;
+}
+
+.products__container {
+  padding-top: 34px;
+}
+
+.products__title {
+  margin-bottom: 66px;
+  text-align: center;
+}
+
+.products__items {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 11px 50px 0px 50px;
 }
 
-.item-assortment__title {
-  margin-bottom: 28px;
-  font-size: 18px;
-  font-weight: 700;
-  text-align: center;
-}
-
-.item-assortment__image {
-  width: 400px;
-  margin-bottom: 16px;
-}
-
-.item-assortment__row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.item-assortment__row li {
-  border-right: 1px solid #444;
-}
-
-.item-assortment__row li:last-child {
-  border-right: none;
-}
-
-.item-assortment__link {
-  display: inline-block;
-  padding: 10px;
-  color: #339dff;
-  font-weight: 700;
-  text-align: center;
-  text-decoration: underline;
-}
-
-.item-assortment__btn {
-  margin-bottom: 20px;
+.products__item:nth-child(odd) {
+  margin-right: 41px;
 }
 
 .consult-block__container {
@@ -2249,6 +2343,10 @@ body._lock {
           flex: 1 1 auto;
 }
 
+.catalog {
+  padding-top: 90px;
+}
+
 @media (min-width: 320px) {
   .popup__close {
     right: 16px;
@@ -2263,6 +2361,11 @@ body._lock {
 }
 
 @media (min-width: 991.98px) {
+  ._back:hover {
+    color: #339dff;
+    text-decoration: underline;
+  }
+
   .btn:hover {
     background-color: #339dff;
     color: #fff;
@@ -3355,6 +3458,8 @@ body._lock {
     padding: 60px 0;
   }
 }
+
+._webp ._back::after{ background: url(../img/catalog/arrow.webp) center no-repeat; }
 
 ._webp .nav-bottom-header__link._add::after{ background: url(../img/header/icons/arr-dwn.webp) center no-repeat; }
 
