@@ -14,18 +14,18 @@ testWebP(function (support) {
 });
 
 // //=======================BURGER====================
-// const burger = document.querySelector('.header__burger')
-// const mobileMenu = document.querySelector('.menu-header')
-// const classNameActive = '_active'
-// const classNameLock = 'lock'
-// const elements = [burger, mobileMenu]
+const burger = document.querySelector('.icon-menu')
+const mobileMenu = document.querySelector('.nav-bottom-header')
+const classNameActive = '_active'
+const classNameLock = 'lock'
+const elements = [burger, mobileMenu]
 
-// function toggleClass(elements, classNameActive, classNameLock) {
-// 	elements.forEach(element => element.classList.toggle(classNameActive))
-// 	document.querySelector('body').classList.toggle(classNameLock)
-// }
+function toggleClass(elements, classNameActive, classNameLock) {
+	elements.forEach(element => element.classList.toggle(classNameActive))
+	document.querySelector('body').classList.toggle(classNameLock)
+}
 
-// burger.onclick = () => toggleClass(elements, classNameActive, classNameLock)
+burger.onclick = () => toggleClass(elements, classNameActive, classNameLock)
 
 
 //======================IBG===============
@@ -40,6 +40,22 @@ function ibg() {
 }
 
 ibg();
+
+//=====================
+//====================Открываем суб-меню по клику=============
+const navLinks = document.querySelectorAll('.nav-bottom-header__link');
+
+if (navLinks.length > 0) {
+	for (let index = 0; index < navLinks.length; index++) {
+		const navLink = navLinks[index];
+		
+		navLink.addEventListener('click', function (e) {
+			navLink.classList.toggle("_active");
+			e.preventDefault();
+		});
+	}
+}
+
 "use strict";
 
 const popupLinks = document.querySelectorAll('.popup-link');
