@@ -1350,6 +1350,10 @@ body.lock {
 ._no-webp .advantages__card_1{
   background: url("../img/advantages/01.png") center no-repeat; }
 
+.advantages__card_1 span {
+  display: block;
+}
+
 ._no-webp .advantages__card_2{
   background: url("../img/advantages/02.png") center no-repeat; }
 
