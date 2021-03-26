@@ -43,7 +43,7 @@ ibg();
 
 //=====================
 //====================Открываем суб-меню по клику=============
-const navLinks = document.querySelectorAll('.nav-bottom-header__link');
+const navLinks = document.querySelectorAll('._add');
 
 if (navLinks.length > 0) {
 	for (let index = 0; index < navLinks.length; index++) {
@@ -60,6 +60,7 @@ if (navLinks.length > 0) {
 
 const popupLinks = document.querySelectorAll('.popup-link');
 const body = document.querySelector('body');
+const header = document.querySelector('.header');
 const lockPadding = document.querySelectorAll('.lock-padding');
 
 let unlock = true;
@@ -119,10 +120,11 @@ function popupClose(popupActive, doUnlock = true) {
      if (lockPadding.length > 0) {
          for (let index = 0; index < lockPadding.length; index++) {
              const el = lockPadding[index];
-            //  el.style.paddingRight = lockPaddingValue;
+             el.style.paddingRight = lockPaddingValue;
          }
      }
-    //  body.style.paddingRight = lockPaddingValue;
+     body.style.paddingRight = lockPaddingValue;
+     header.style.paddingRight = lockPaddingValue;
      body.classList.add('lock');
 
      unlock = false;
@@ -140,6 +142,7 @@ function popupClose(popupActive, doUnlock = true) {
             }
          }
             body.style.paddingRight = '0px';
+            header.style.paddingRight = '0px';
             body.classList.remove('lock');
         }, timeout);
 
