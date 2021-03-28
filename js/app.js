@@ -1,46 +1,4 @@
-// //===============Animation on scroll====================
-
-const animItems = document.querySelectorAll('._anim-items');
-
-if (animItems.length > 0) {
-	window.addEventListener('scroll', animOnScroll);
-
-	function animOnScroll() {
-		for (let index = 0; index < animItems.length; index++) {
-			const animItem = animItems[index];
-			const animItemHeight = animItem.offsetHeight;
-			const animItemOffset = offset(animItem).top;
-			const animStart = 4;
-
-			let animItemPoint = window.innerHeight - animItemHeight / animStart;
-			if (animItemHeight > window.innerHeight) {
-				animItemPoint = window.innerHeight - window.innerHeight / animStart;
-			}
-
-			if ((pageYOffset > animItemOffset - animItemPoint) && pageYOffset < (animItemOffset + animItemHeight)) {
-				animItem.classList.add('_active'); //Попробовать сюда добавить вызов функции запуска счетчика
-
-			} else {
-				if (!animItem.classList.contains('_anim-no-hide')) {
-					animItem.classList.remove('_active');
-
-				}
-			}
-		}
-	}
-
-	function offset(el) {
-		const rect = el.getBoundingClientRect(),
-			scrollLeft = window.pageYOffset || document.documentElement.scrollLeft,
-			scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-		return {
-			top: rect.top + scrollTop,
-			left: rect.left + scrollLeft
-		};
-	}
-	animOnScroll();
-}
-//=================================================
+// 
 
 function testWebP(callback) {
 	var webP = new Image();
@@ -380,3 +338,234 @@ DynamicAdapt.prototype.arraySort = function (arr) {
 
 const da = new DynamicAdapt("max");
 da.init();
+//BildSlider
+let sliders = document.querySelectorAll('._swiper');
+if (sliders) {
+    for (let index = 0; index < sliders.length; index++) {
+        let slider = sliders[index];
+        if (!slider.classList.contains('swiper-bild')) {
+            let slider_items = slider.children;
+            if (slider_items) {
+                for (let index = 0; index < slider_items.length; index++) {
+                    let el = slider_items[index];
+                    el.classList.add('swiper-slide');
+                }
+            }
+            let slider_content = slider.innerHTML;
+            let slider_wrapper = document.createElement('div');
+            slider_wrapper.classList.add('swiper-wrapper');
+            slider_wrapper.innerHTML = slider_content;
+            slider.innerHTML = '';
+            slider.appendChild(slider_wrapper);
+            slider.classList.add('swiper-bild');
+        }
+        if (slider.classList.contains('_gallery')) {
+            //slider.data('lightGallery').destroy(true);
+        }
+    }
+    sliders_bild_callback();
+}
+
+function sliders_bild_callback(params) {}
+
+// if (document.querySelector('.mainslider')) {
+//     let mainslider = new Swiper('.mainslider__body', {
+//     /*
+//         effect: 'fade',
+//         autoplay: {
+//             delay: 3000,
+//             disableOnInteraction: false,
+//         },
+//         */
+//     observer: true,
+//     observeParents: true,
+//     slidesPerView: 1,
+//     spaceBetween: 0,
+//     autoHeight: true,
+//     speed: 800,
+//     //touchRatio: 0,
+//     //simulateTouch: false,
+//     //loop: true,
+//     //preLoadImages: false,
+//     //Lazy: true,
+//     //Dotts
+//     pagination: {
+//     el: '.mainslider__dotts',
+//     clickable: true,
+//     },
+//     //Arrows
+//     /*
+//     navigation: {
+//         nextEl: '.about__more .more__item_next',
+//         prevEl: '.about__more .more__item_prev',
+//     },
+//     */
+//     /*
+//     breakpoints: {
+//         320: {
+//             slidesPerView: 1,
+//             spaceBetween: 0,
+//             autoHeight: true,
+//         },
+//         768: {
+//             slidesPerView: 2,
+//             spaceBetween: 20,
+//         },
+//         992: {
+//             slidesPerView: 3,
+//             spaceBetween: 20,
+//         },
+//         1268: {
+//             slidesPerView: 4,
+//             spaceBetween: 30,
+//         },
+//     },
+//     */
+//     on: {
+//         lazyImageReady: function () {
+//             ibg();
+//         },
+//     }
+//     //And if we need scrollbar
+//     //scrollbar: {
+//     //el: '.swiper-scrollbar',
+//     //},
+// });
+//     let mainsliderImages = document.querySelectorAll('.mainslider__image');
+//     let mainsliderDotts = document.querySelectorAll('.mainslider__dotts .swiper-pagination-bullet');
+
+//     for(let index = 0; index < mainsliderImages.length; index++) {
+//         const mainsliderImage = mainsliderImages[index].querySelector('img').getAttribute('src');
+//         mainsliderDotts[index].style.backgroundImage = "url('" + mainsliderImage + "')";
+//     }
+// }
+// if (document.querySelector('.products__items')) {
+//     let mainslider = new Swiper('.slider-body', {
+//         /*
+//             effect: 'fade',
+//             autoplay: {
+//                 delay: 3000,
+//                 disableOnInteraction: false,
+//             },
+//             */
+//         observer: true,
+//         observeParents: true,
+//         slidesPerView: 3,
+//         spaceBetween: 0,
+//         autoHeight: true,
+//         speed: 800,
+//         //touchRatio: 0,
+//         simulateTouch: true,
+//         loop: true,
+//         //preLoadImages: false,
+//         //Lazy: true,
+//         //Dotts
+//         pagination: {
+//             el: '.gallery__dotts',
+//             clickable: true,
+//         },
+//         //Arrows
+//         /*
+//         navigation: {
+//             nextEl: '.about__more .more__item_next',
+//             prevEl: '.about__more .more__item_prev',
+//         },
+//         */
+//         breakpoints: {
+//             320: {
+//                 slidesPerView: 1,
+//                 spaceBetween: 0,
+//                 autoHeight: true,
+//             },
+//             768: {
+//                 slidesPerView: 2,
+//                 spaceBetween: 50,
+//             },
+//             992: {
+//                 slidesPerView: 3,
+//                 spaceBetween: 40,
+//             },
+//             1268: {
+//                 slidesPerView: 3,
+//                 spaceBetween: 45,
+//             },
+//         },
+//         on: {
+//             lazyImageReady: function () {
+//                 ibg();
+//             },
+//         }
+//         //And if we need scrollbar
+//         //scrollbar: {
+//         //el: '.swiper-scrollbar',
+//         //},
+//     });
+
+    if (document.querySelector('.products__items')) {
+        let productsSlider = new Swiper('.slider-body', {
+            /*
+                effect: 'fade',
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                */
+            observer: true,
+            observeParents: true,
+            slidesPerView: 1,
+            spaceBetween: 20,
+            autoHeight: true,
+            speed: 800,
+            touchRatio: 1,
+            simulateTouch: true,
+            // loop: true,
+            //preLoadImages: false,
+            //Lazy: true,
+            //Dotts
+
+            //Arrows
+
+            // navigation: {
+            //     nextEl: '.show-room-slider__arrow_next',
+            //     prevEl: '.show-room-slider__arrow_prev',
+            // },
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                    autoHeight: true,
+                },
+                480: {
+                    slidesPerView: 1,
+                },
+                600: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 1,
+                },
+                992: {
+                    slidesPerView: 1,
+                },
+            },
+
+            on: {
+                lazyImageReady: function () {
+                    ibg();
+                },
+            },
+            //And if we need scrollbar
+            //scrollbar: {
+            //el: '.swiper-scrollbar',
+            //},
+
+        });
+    // }
+
+//     let mainsliderImages = document.querySelectorAll('.gallery__slide');
+//     let mainsliderDotts = document.querySelectorAll('.gallery__controls .swiper-pagination-bullet');
+
+//     for (let index = 0; index < mainsliderImages.length; index++) {
+//         const mainsliderImage = mainsliderImages[index].querySelector('img').getAttribute('src');
+//         mainsliderDotts[index].style.backgroundImage = "url('" + mainsliderImage + "')";
+//     }
+}
