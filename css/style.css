@@ -1387,6 +1387,10 @@ body.lock {
   margin-right: 22px;
 }
 
+.certificates__image_s {
+  display: none;
+}
+
 .certificates__image img {
   cursor: -webkit-zoom-in;
   cursor: zoom-in;
@@ -3275,6 +3279,7 @@ body.lock {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+    max-width: 325px;
   }
 
   .geography__tag {
@@ -3850,6 +3855,14 @@ body.lock {
     -webkit-box-ordinal-group: 8;
         -ms-flex-order: 7;
             order: 7;
+  }
+
+  .certificates__image_m {
+    display: none;
+  }
+
+  .certificates__image_s {
+    display: block;
   }
 
   .geography__cards {
