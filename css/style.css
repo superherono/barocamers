@@ -93,6 +93,10 @@ button::-moz-focus-inner {
   border: 0;
 }
 
+button {
+  background-color: #fff;
+}
+
 a,
 a:visited {
   text-decoration: none;
@@ -2579,6 +2583,7 @@ body.lock {
   margin-top: 16px;
   font-size: 16px;
   color: #444;
+  background-color: #fff;
   border: 1px solid #339dff;
   border-radius: 10px;
   width: 150px;
@@ -2675,10 +2680,15 @@ body.lock {
 
 .not-found {
   padding: 180px 0 103px 0;
-}
-
-.not-found img {
-  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .page {
