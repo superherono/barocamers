@@ -1,4 +1,4 @@
-// 
+//==========================Test-Browser-on-WebP==============================
 
 function testWebP(callback) {
 	var webP = new Image();
@@ -15,7 +15,7 @@ testWebP(function (support) {
 	}
 });
 
-// //=======================BURGER====================
+//=======================BURGER====================
 const burger = document.querySelector('.icon-menu')
 const mobileMenu = document.querySelector('.nav-bottom-header')
 const classNameActive = '_active'
@@ -43,7 +43,6 @@ function ibg() {
 
 ibg();
 
-//=====================
 //====================Открываем суб-меню по клику=============
 const navLinks = document.querySelectorAll('._add');
 

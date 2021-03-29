@@ -1121,6 +1121,10 @@ body.lock {
   margin-left: -42px;
 }
 
+.description__wrapper {
+  background-color: #FBFBFB;
+}
+
 .numerals-description {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1132,7 +1136,6 @@ body.lock {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: #FBFBFB;
 }
 
 .numerals-description__title {
