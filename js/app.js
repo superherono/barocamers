@@ -108,7 +108,7 @@ if (spollers.length > 0) {
 					}
 				}
 			}
-			console.log(spoller.nextElementSibling);
+			// console.log(spoller.nextElementSibling);
 			spoller.classList.toggle('_active');
 			assortmentFilter.classList.toggle('_active');
 			_slideToggle(spoller.nextElementSibling);
@@ -220,6 +220,37 @@ let _slideToggle = (target, duration = 500) => {
 	}
 }
 
+//=====================Сворачиваем табы в моб версии================================
+const breakpoint = window.matchMedia('(max-width:767.98px)');
+const breakpointChecker = function () {
+	
+	
+	if (breakpoint.matches === true) {
+		const spollers = document.querySelectorAll('._spoller');
+		console.log(spollers);
+		spollers.forEach(spoller => {
+			spoller.classList.toggle('_active');
+			assortmentFilter.classList.toggle('_active');
+			_slideToggle(spoller.nextElementSibling);
+		});
+		
+		return;
+
+	} else if (breakpoint.matches === false) {
+		spollers.forEach(spoller => {
+			spoller.classList.remove('_active');
+			assortmentFilter.classList.remove('_active');
+			_slideToggle(spoller.nextElementSibling);
+		});
+
+	}
+
+};
+// keep an eye on viewport size changes
+breakpoint.addListener(breakpointChecker);
+
+// kickstart
+breakpointChecker();
 "use strict";
 
 const popupLinks = document.querySelectorAll('.popup-link');
@@ -667,13 +698,6 @@ function sliders_bild_callback(params) {}
             },
             breakpoints: {
                 320: {
-                    slidesPerView: 1,
-                    autoHeight: true,
-                },
-                480: {
-                    slidesPerView: 1,
-                },
-                600: {
                     slidesPerView: 1,
                 },
                 768: {
