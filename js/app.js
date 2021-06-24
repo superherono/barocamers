@@ -123,8 +123,9 @@ if (spollers.length > 0) {
 		for (let index = 0; index < spollers.length; index++) {
 			const spoller = spollers[index];
 			let spollerMax = spoller.getAttribute('data-max');
-
+			
 			if (spollerMax && window.innerWidth > spollerMax) {
+				console.log( window.innerWidth);
 				if (spoller.classList.contains('_init')) {
 					spoller.classList.remove('_active');
 					spoller.classList.remove('_init');
@@ -145,15 +146,13 @@ if (spollers.length > 0) {
 			}
 		}
 	}
-	window.addEventListener("resize", spollersInit);
+	// window.addEventListener("resize", spollersInit);
 
 	setTimeout(function () {
 		spollersShowActive();
 		spollersInit();
 	}, 0);
 }
-//=====================SlideToggle================================
-//=================
 //SlideToggle
 let _slideUp = (target, duration = 500) => {
 	target.style.transitionProperty = 'height, margin, padding';
@@ -222,35 +221,175 @@ let _slideToggle = (target, duration = 500) => {
 
 //=====================Сворачиваем табы в моб версии================================
 const breakpoint = window.matchMedia('(max-width:767.98px)');
+let filterBody = document.querySelector('.filter__body');
+
 const breakpointChecker = function () {
 	
-	
 	if (breakpoint.matches === true) {
-		const spollers = document.querySelectorAll('._spoller');
-		console.log(spollers);
-		spollers.forEach(spoller => {
-			spoller.classList.toggle('_active');
-			assortmentFilter.classList.toggle('_active');
-			_slideToggle(spoller.nextElementSibling);
-		});
+		assortmentFilter.classList.add('_active');
+		for (let index = 0; index < spollers.length; index++) {
+			const spoller = spollers[index];
+				spoller.classList.remove('_init');
+				spoller.classList.add('_active');
+
+			if (spoller.classList.contains('_active')) {
+				_slideUp(spoller.nextElementSibling);
+			}
+		}
 		
 		return;
 
-	} else if (breakpoint.matches === false) {
-		spollers.forEach(spoller => {
-			spoller.classList.remove('_active');
-			assortmentFilter.classList.remove('_active');
-			_slideToggle(spoller.nextElementSibling);
-		});
-
+	}
+	else {
+		spollersShowActive();
+		spollersInit();
 	}
 
 };
-// keep an eye on viewport size changes
+if (filterBody) {
+	// keep an eye on viewport size changes
 breakpoint.addListener(breakpointChecker);
 
 // kickstart
 breakpointChecker();
+}
+
+// //=====================SlideToggle================================
+// //=================
+//=====================Filter================================
+const filters = document.querySelector('#filters');
+if (filters) {
+	filters.addEventListener('input', filterGoods);
+
+	function filterGoods() {
+		const
+		  equipment = [...filters.querySelectorAll('#equipment input:checked')].map(n => n.value),
+		  capacity = [...filters.querySelectorAll('#capacity input:checked')].map(n => n.value),
+		  purpose = [...filters.querySelectorAll('#purpose input:checked')].map(n => n.value),
+		  priceMin = document.querySelector('#price-min').value,
+		  priceMax = document.querySelector('#price-max').value;
+	  
+		outputGoods(DATA.filter(n => (
+		  // (!equipment.length || equipment.includes(n.equipment)) &&
+		  (!equipment.length || equipment.some(el => n.equipment.includes(el))) &&
+		  (!capacity.length || capacity.some(el => n.capacity.includes(el))) &&
+		  (!purpose.length || purpose.some(el => n.purpose.includes(el))) &&
+		  (!priceMin || priceMin <= n.cost) &&
+		  (!priceMax || priceMax >= n.cost)
+		)));
+	  }
+	  
+	  function outputGoods(goods) {
+		document.getElementById('goods').innerHTML = goods.map(n => `
+		  <div class="assortment__products__item product-assortment">
+			  <a href="#" class="product-assortment__image _ibg">
+				  <picture>
+					  <source srcset="${n.image}, ../img/catalog/products/mobile/01-x2.webp 2x, ../img/catalog/products/mobile/01-x3.webp 3x" media="(max-width: 400px)" type="image/webp">
+					  <source srcset="../img/catalog/products/mobile/01-x3.webp" media="(max-width: 767px)" type="image/webp">
+					  <img src="${n.image}" alt="">
+				  </picture>
+			  </a>
+			  <p class="product-assortment__status"><span class="_icon-checked"></span>В наличии</p>
+			  <h3 class="product-assortment__title">${n.name}</h3>
+			  <div class="product-assortment__rating">
+				  <span class="product-assortment__label">Рейтинг:</span>
+				  <div class="product-assortment__stars"><img src="../img/footer/stars.svg" alt=""></div>
+			  </div>
+			  <a href="#" class="btn product-assortment__btn">Купить</a>
+		  </div>
+		`).join('');
+	  }
+	  
+	  const DATA = [
+		{
+		  "equipment" : ["concentrator", "capsule"],
+		  "name" : "Эверест 1.68",
+		  "cost" : 1000,
+		  "image" : "../img/catalog/products/01.webp",
+		  "purpose": ["sessions","oxygenation","procedures","hypoxia","diseases","pregnancy"],
+		  "capacity" : ["single", "all"]
+		},
+		{
+		  "equipment" : ["concentrator", "capsule"],
+		  "name" : "Эверест 2.52",
+		  "cost" : 1500,
+		  "image" : "../img/catalog/products/02.webp",
+		  "purpose": 
+			  ["sessions","oxygenation","procedures","hypoxia","diseases","pregnancy"],
+		  "capacity" : ["multi", "all"]
+		},
+		{
+		  "equipment" : "capsule",
+		  "name" : "Эверест 3.2",
+		  "cost" : 1700,
+		  "image" : "../img/catalog/products/03.webp",
+		  "purpose": "",
+		  "capacity" : ["single", "all"]
+		},
+		{
+		  "equipment" : "capsule",
+		  "name" : "Эверест 4.8",
+		  "cost" : 2400,
+		  "image" : "../img/catalog/products/03.webp",
+		  "purpose": "",
+		  "capacity" : ["single", "all"]
+		},
+		{
+		  "equipment" : ["concentrator", "capsule"],
+		  "name" : "Эверест 1",
+		  "cost" : 2000,
+		  "image" : "../img/catalog/products/04.webp",
+		  "purpose": 
+			  ["oxygenation","procedures","hypoxia","diseases", "animals"],
+		  "capacity" : 
+			  ["single", "all"]
+		},
+	  ];
+	  
+	  outputGoods(DATA);
+
+	  //=====================Reset Filter================================
+
+let filterBtn = document.querySelector('.filter__cancel_text');
+filterBtn.addEventListener("click", function(e) {
+	form_clean(filterBody);
+	setTimeout(() => {
+		outputGoods(DATA);
+	}, 100);
+});
+function form_clean(form) {
+	let inputs = form.querySelectorAll('input,textarea');
+	for (let index = 0; index < inputs.length; index++) {
+		const el = inputs[index];
+		el.parentElement.classList.remove('_focus');
+		el.classList.remove('_focus');
+		el.value = el.getAttribute('data-value');
+	}
+	let checkboxes = form.querySelectorAll('.filter__checkbox');
+	if (checkboxes.length > 0) {
+		for (let index = 0; index < checkboxes.length; index++) {
+			const checkbox = checkboxes[index];
+			checkbox.checked = false;
+		}
+	}
+	let selects = form.querySelectorAll('select');
+	if (selects.length > 0) {
+		for (let index = 0; index < selects.length; index++) {
+			const select = selects[index];
+			const select_default_value = select.getAttribute('data-default');
+			select.value = select_default_value;
+			select_item(select);
+		}
+	}
+}
+
+}
+
+
+
+
+
+
 "use strict";
 
 const popupLinks = document.querySelectorAll('.popup-link');
