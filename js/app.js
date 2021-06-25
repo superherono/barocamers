@@ -64,7 +64,7 @@ for (let anchor of anchors) {
 		e.preventDefault()
 
 		const blockID = anchor.getAttribute('href').substr(1);
-
+		console.log(blockID);
 		document.getElementById(blockID).scrollIntoView({
 			behavior: 'smooth',
 			block: 'start'
@@ -89,6 +89,7 @@ function gallery_init() {
 //=====================Spollers================================
 let spollers = document.querySelectorAll("._spoller");
 const assortmentFilter = document.querySelector('.assortment__filter '); 
+let readMore = document.querySelector('.read-more');  
 let spollersGo = true;
 if (spollers.length > 0) {
 
@@ -102,7 +103,6 @@ if (spollers.length > 0) {
 				for (let i = 0; i < curent_spollers.length; i++) {
 					let el = curent_spollers[i];
 					if (el != spoller) {
-						assortmentFilter.classList.remove('_active');
 						el.classList.remove('_active');
 						_slideUp(el.nextElementSibling);
 					}
@@ -110,7 +110,13 @@ if (spollers.length > 0) {
 			}
 			// console.log(spoller.nextElementSibling);
 			spoller.classList.toggle('_active');
-			assortmentFilter.classList.toggle('_active');
+			if (assortmentFilter) {
+				assortmentFilter.classList.toggle('_active');
+				
+			}
+			if (readMore) {
+				readMore.classList.toggle('_active');
+			}
 			_slideToggle(spoller.nextElementSibling);
 
 			setTimeout(function () {
@@ -254,8 +260,6 @@ breakpoint.addListener(breakpointChecker);
 breakpointChecker();
 }
 
-// //=====================SlideToggle================================
-// //=================
 //=====================Filter================================
 const filters = document.querySelector('#filters');
 if (filters) {
@@ -282,7 +286,7 @@ if (filters) {
 	  function outputGoods(goods) {
 		document.getElementById('goods').innerHTML = goods.map(n => `
 		  <div class="assortment__products__item product-assortment">
-			  <a href="#" class="product-assortment__image _ibg">
+			  <a href="${n.link}" class="product-assortment__image _ibg">
 				  <picture>
 					  <source srcset="${n.image}, ../img/catalog/products/mobile/01-x2.webp 2x, ../img/catalog/products/mobile/01-x3.webp 3x" media="(max-width: 400px)" type="image/webp">
 					  <source srcset="../img/catalog/products/mobile/01-x3.webp" media="(max-width: 767px)" type="image/webp">
@@ -295,7 +299,7 @@ if (filters) {
 				  <span class="product-assortment__label">Рейтинг:</span>
 				  <div class="product-assortment__stars"><img src="../img/footer/stars.svg" alt=""></div>
 			  </div>
-			  <a href="#" class="btn product-assortment__btn">Купить</a>
+			  <a href="${n.link}" class="btn product-assortment__btn">Купить</a>
 		  </div>
 		`).join('');
 	  }
@@ -307,7 +311,8 @@ if (filters) {
 		  "cost" : 1000,
 		  "image" : "../img/catalog/products/01.webp",
 		  "purpose": ["sessions","oxygenation","procedures","hypoxia","diseases","pregnancy"],
-		  "capacity" : ["single", "all"]
+		  "capacity" : ["single", "all"],
+		  "link": "everest-1-68.html",
 		},
 		{
 		  "equipment" : ["concentrator", "capsule"],
@@ -316,7 +321,8 @@ if (filters) {
 		  "image" : "../img/catalog/products/02.webp",
 		  "purpose": 
 			  ["sessions","oxygenation","procedures","hypoxia","diseases","pregnancy"],
-		  "capacity" : ["multi", "all"]
+		  "capacity" : ["multi", "all"],
+		  "link": "everest-2-52.html",
 		},
 		{
 		  "equipment" : "capsule",
@@ -324,7 +330,8 @@ if (filters) {
 		  "cost" : 1700,
 		  "image" : "../img/catalog/products/03.webp",
 		  "purpose": "",
-		  "capacity" : ["single", "all"]
+		  "capacity" : ["single", "all"],
+		  "link": "#",
 		},
 		{
 		  "equipment" : "capsule",
@@ -332,7 +339,8 @@ if (filters) {
 		  "cost" : 2400,
 		  "image" : "../img/catalog/products/03.webp",
 		  "purpose": "",
-		  "capacity" : ["single", "all"]
+		  "capacity" : ["single", "all"],
+		  "link": "#",
 		},
 		{
 		  "equipment" : ["concentrator", "capsule"],
@@ -342,7 +350,8 @@ if (filters) {
 		  "purpose": 
 			  ["oxygenation","procedures","hypoxia","diseases", "animals"],
 		  "capacity" : 
-			  ["single", "all"]
+			  ["single", "all"],
+			  "link": "#",
 		},
 	  ];
 	  
@@ -350,13 +359,16 @@ if (filters) {
 
 	  //=====================Reset Filter================================
 
-let filterBtn = document.querySelector('.filter__cancel_text');
-filterBtn.addEventListener("click", function(e) {
-	form_clean(filterBody);
-	setTimeout(() => {
-		outputGoods(DATA);
-	}, 100);
-});
+	let filterBtn = document.querySelector('.filter__cancel_text');
+		filterBtn.addEventListener("click", function(e) {
+			form_clean(filterBody);
+			setTimeout(() => {
+				outputGoods(DATA);
+			}, 100);
+		}
+	);
+}
+
 function form_clean(form) {
 	let inputs = form.querySelectorAll('input,textarea');
 	for (let index = 0; index < inputs.length; index++) {
@@ -383,9 +395,27 @@ function form_clean(form) {
 	}
 }
 
+//=====================Tabs================================
+let tabs = document.querySelectorAll("._tabs");
+console.log(tabs);
+for (let index = 0; index < tabs.length; index++) {
+	let tab = tabs[index];
+	let tabs_items = tab.querySelectorAll("._tabs-item");
+	let tabs_blocks = tab.querySelectorAll("._tabs-block");
+	for (let index = 0; index < tabs_items.length; index++) {
+		let tabs_item = tabs_items[index];
+		tabs_item.addEventListener("click", function (e) {
+			for (let index = 0; index < tabs_items.length; index++) {
+				let tabs_item = tabs_items[index];
+				tabs_item.classList.remove('_active');
+				tabs_blocks[index].classList.remove('_active');
+			}
+			tabs_item.classList.add('_active');
+			tabs_blocks[index].classList.add('_active');
+			e.preventDefault();
+		});
+	}
 }
-
-
 
 
 
