@@ -63,11 +63,9 @@ for (let anchor of anchors) {
 	
 	if (!anchor.classList.contains('popup-link') && !anchor.classList.contains('popup__close')) {
 		anchor.addEventListener('click', function (e) {
-			console.log(anchor);
 			e.preventDefault();
 	
 			const blockID = anchor.getAttribute('href').substr(1);
-			console.log(blockID);
 			document.getElementById(blockID).scrollIntoView({
 				behavior: 'smooth',
 				block: 'start'
@@ -136,7 +134,6 @@ if (spollers.length > 0) {
 			let spollerMax = spoller.getAttribute('data-max');
 			
 			if (spollerMax && window.innerWidth > spollerMax) {
-				console.log( window.innerWidth);
 				if (spoller.classList.contains('_init')) {
 					spoller.classList.remove('_active');
 					spoller.classList.remove('_init');
@@ -290,21 +287,30 @@ if (filters) {
 	  
 	  function outputGoods(goods) {
 		document.getElementById('goods').innerHTML = goods.map(n => `
-		  <div class="assortment__products__item product-assortment">
+		  <div itemscope itemtype="http://schema.org/Product" class="assortment__products__item product-assortment">
 			  <a href="${n.link}" class="product-assortment__image _ibg">
 				  <picture>
 					  <source srcset="${n.image}, ../img/catalog/products/mobile/01-x2.webp 2x, ../img/catalog/products/mobile/01-x3.webp 3x" media="(max-width: 400px)" type="image/webp">
 					  <source srcset="../img/catalog/products/mobile/01-x3.webp" media="(max-width: 767px)" type="image/webp">
-					  <img src="${n.image}" alt="">
+					  <img itemprop="image" src="${n.image}" alt="Фото Барокамеры">
 				  </picture>
 			  </a>
 			  <p class="product-assortment__status"><span class="_icon-checked"></span>В наличии</p>
-			  <h3 class="product-assortment__title">${n.name}</h3>
+			  <h3 itemprop="name" class="product-assortment__title">${n.name}</h3>
 			  <div class="product-assortment__rating">
 				  <span class="product-assortment__label">Рейтинг:</span>
 				  <div class="product-assortment__stars"><img src="../img/footer/stars.svg" alt=""></div>
 			  </div>
-			  <a href="${n.link}" class="btn product-assortment__btn">Купить</a>
+			  <a itemprop="url" href="${n.link}" class="btn product-assortment__btn">Купить</a>
+
+			  <meta itemprop="description" content="${n.description}">
+			  <span itemprop="brand" itemscope itemtype="http://schema.org/Brand">
+			  <meta itemprop="name" content="Эверест"></span>
+			  <span itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+				<meta itemprop="ratingValue" content="5">
+				<meta itemprop="bestRating" content="5">
+				<meta itemprop="worstRating" content="1">
+				<meta itemprop="ratingCount" content="6"></span>
 		  </div>
 		`).join('');
 	  }
@@ -318,6 +324,7 @@ if (filters) {
 		  "purpose": ["sessions","oxygenation","procedures","hypoxia","diseases","pregnancy"],
 		  "capacity" : ["single", "all"],
 		  "link": "everest-1-68.html",
+		  "description": "Модель барокамеры “Эверест 1,68” идеально подходит для проведения индивидуальных сеансов. Она обладает достаточной вместимостью для комфортного размещения одного человека любой комплектации.",
 		},
 		{
 		  "equipment" : ["concentrator", "capsule"],
@@ -328,6 +335,7 @@ if (filters) {
 			  ["sessions","oxygenation","procedures","hypoxia","diseases","pregnancy"],
 		  "capacity" : ["multi", "all"],
 		  "link": "everest-2-52.html",
+		  "description": "Модель барокамеры “Эверест 2,52” обладает наибольшей вместимостью и рекомендована для проведения групповых сеансов. Легко и комфортно внутри может разместиться до 4х человек.",
 		},
 		{
 		  "equipment" : "capsule",
@@ -337,6 +345,7 @@ if (filters) {
 		  "purpose": "",
 		  "capacity" : ["single", "all"],
 		  "link": "#",
+		  "description":"",
 		},
 		{
 		  "equipment" : "capsule",
@@ -346,6 +355,7 @@ if (filters) {
 		  "purpose": "",
 		  "capacity" : ["single", "all"],
 		  "link": "#",
+		  "description":"",
 		},
 		{
 		  "equipment" : ["concentrator", "capsule"],
@@ -357,6 +367,7 @@ if (filters) {
 		  "capacity" : 
 			  ["single", "all"],
 			  "link": "#",
+			  "description":"",
 		},
 	  ];
 	  
