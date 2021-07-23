@@ -940,10 +940,10 @@ if (document.querySelector('.welcome__images')) {
 
         //Arrows
 
-        // navigation: {
-        //     nextEl: '.show-room-slider__arrow_next',
-        //     prevEl: '.show-room-slider__arrow_prev',
-        // },
+        navigation: {
+            nextEl: '.welcome__arrow_right',
+            prevEl: '.welcome__arrow_left',
+        },
         // breakpoints: {
         //     320: {
         //         slidesPerView: 1,
