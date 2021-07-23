@@ -1909,21 +1909,16 @@ iframe,
 
 .welcome__arrow {
   cursor: pointer;
+  color: #339dff;
 }
 
-.welcome__arrow_right {
+.welcome__arrow_left {
   -webkit-transform: rotate(-180deg);
       -ms-transform: rotate(-180deg);
           transform: rotate(-180deg);
-  -webkit-transform-origin: 50% 45%;
-      -ms-transform-origin: 50% 45%;
-          transform-origin: 50% 45%;
-}
-
-.welcome__arrow svg > path {
-  -webkit-transition: fill 0.3s ease 0s;
-  -o-transition: fill 0.3s ease 0s;
-  transition: fill 0.3s ease 0s;
+  -webkit-transform-origin: 50% 48%;
+      -ms-transform-origin: 50% 48%;
+          transform-origin: 50% 48%;
 }
 
 .welcome__title {
@@ -2759,16 +2754,43 @@ iframe,
 
 .certificates__images {
   -webkit-box-flex: 0;
-      -ms-flex: 0 0 557px;
-          flex: 0 0 557px;
+      -ms-flex: 0 0 460px;
+          flex: 0 0 460px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: 81px;
+  margin-right: 22px;
+  min-width: 0;
+}
+
+.certificates__controls {
+  padding-top: 20px;
+  padding-right: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding-left: 81px;
-  margin-right: 22px;
+  width: 100%;
+}
+
+.certificates__arrow {
+  cursor: pointer;
+}
+
+.certificates__arrow_right {
+  -webkit-transform: rotate(-180deg);
+      -ms-transform: rotate(-180deg);
+          transform: rotate(-180deg);
+  -webkit-transform-origin: 50% 45%;
+      -ms-transform-origin: 50% 45%;
+          transform-origin: 50% 45%;
 }
 
 .certificates__image img {
@@ -3796,6 +3818,14 @@ iframe,
 
 .product {
   padding-top: 90px;
+}
+
+.product__wrapper {
+  background-color: #6E889D;
+}
+
+.product__wrapper_1 {
+  background-color: #738DA1;
 }
 
 .product__welcome {
@@ -6123,6 +6153,10 @@ iframe,
     -webkit-transform: rotate(180deg) translateY(11px);
         -ms-transform: rotate(180deg) translateY(11px);
             transform: rotate(180deg) translateY(11px);
+  }
+
+  .nav-bottom-header__link_1._add._active {
+    margin-bottom: 105px;
   }
 }
 
