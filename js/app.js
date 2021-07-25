@@ -377,12 +377,12 @@ if (document.querySelector('.certificates__slider')) {
         observer: true,
         observeParents: true,
         slidesPerView: 2,
-        spaceBetween: 0,
+        spaceBetween: 50,
         autoHeight: true,
         speed: 800,
         //touchRatio: 0,
         simulateTouch: true,
-        loop: true,
+        // loop: true,
         //preLoadImages: false,
         //Lazy: true,
         //Dotts
@@ -393,38 +393,29 @@ if (document.querySelector('.certificates__slider')) {
         //Arrows
         
         navigation: {
-            nextEl: '.certificates__arrow_right',
-            prevEl: '.certificates__arrow_left',
+            nextEl: '.certificates__arrow.arrow__right',
+            prevEl: '.certificates__arrow.arrow__left',
         },
-        
-        // breakpoints: {
-        //     320: {
-        //         slidesPerView: 2,
-        //         spaceBetween: 0,
-        //         autoHeight: true,
-        //     },
-        //     768: {
-        //         slidesPerView: 2,
-        //         spaceBetween: 50,
-        //     },
-        //     992: {
-        //         slidesPerView: 3,
-        //         spaceBetween: 40,
-        //     },
-        //     1268: {
-        //         slidesPerView: 3,
-        //         spaceBetween: 45,
-        //     },
-        // },
+            breakpoints: {
+                320: {
+                    spaceBetween: 10,
+                },
+                768: {
+                    spaceBetween: 30,
+                },
+                992: {
+                    spaceBetween: 40,
+                },
+                1268: {
+                    spaceBetween: 50,
+                },
+            },
         on: {
             lazyImageReady: function () {
                 ibg();
             },
         }
-        //And if we need scrollbar
-        //scrollbar: {
-        //el: '.swiper-scrollbar',
-        //},
+
     });
 }
 
@@ -444,8 +435,8 @@ if (document.querySelector('.certificates__slider')) {
 
             //Arrows
             navigation: {
-                nextEl: '.products__arrow_right',
-                prevEl: '.products__arrow_left',
+                nextEl: '.products__arrow.arrow__right',
+                prevEl: '.products__arrow.arrow__left',
             },
             breakpoints: {
                 320: {
@@ -464,24 +455,9 @@ if (document.querySelector('.certificates__slider')) {
                     ibg();
                 },
             },
-            //And if we need scrollbar
-            //scrollbar: {
-            //el: '.swiper-scrollbar',
-            //},
 
         });
 
-
-        
-    // }
-    
-//     let mainsliderImages = document.querySelectorAll('.gallery__slide');
-//     let mainsliderDotts = document.querySelectorAll('.gallery__controls .swiper-pagination-bullet');
-
-//     for (let index = 0; index < mainsliderImages.length; index++) {
-//         const mainsliderImage = mainsliderImages[index].querySelector('img').getAttribute('src');
-//         mainsliderDotts[index].style.backgroundImage = "url('" + mainsliderImage + "')";
-//     }
 }
 if (document.querySelector('.welcome__images')) {
     let welcomeSlider = new Swiper('.welcome__images', {
@@ -508,8 +484,8 @@ if (document.querySelector('.welcome__images')) {
         //Arrows
 
         navigation: {
-            nextEl: '.welcome__arrow_right',
-            prevEl: '.welcome__arrow_left',
+            nextEl: '.welcome__arrow.arrow__right',
+            prevEl: '.welcome__arrow.arrow__left',
         },
         // breakpoints: {
         //     320: {
